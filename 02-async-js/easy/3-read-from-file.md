@@ -5,3 +5,25 @@ You can use the fs library to as a black box, the goal is to understand async ta
 Try to do an expensive operation below the file read and see how it affects the output. 
 Make the expensive operation more and more expensive and see how it affects the output. 
 
+const fs = require('fs');
+
+fs.readFile('/02-async-js/content.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log(data);
+});
+
+const expensiveOperation = () => {
+  for (let i = 0; i < 1000000000; i++) {
+     let result = 0;
+  for (let i = 0; i < 1000000000; i++) {
+    result += Math.sqrt(i);
+  }
+  console.log('Result:', result);
+  }
+};
+
+expensiveOperation();

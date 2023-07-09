@@ -4,19 +4,45 @@
  * Print out the time it takes to complete the entire operation.
  * Compare it with the results from 3-promise-all.js
  */
-
 function waitOneSecond() {
-
-}
-
-function waitTwoSecond() {
-
-}
-
-function waitThreeSecond() {
-
-}
-
-function calculateTime() {
-
-}
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  }
+  
+  function waitTwoSeconds() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 2000);
+    });
+  }
+  
+  function waitThreeSeconds() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
+  }
+  
+  function calculateTime() {
+    const startTime = Date.now();
+  
+    waitOneSecond()
+      .then(() => waitTwoSeconds())
+      .then(() => waitThreeSeconds())
+      .then(() => {
+        const endTime = Date.now();
+        const elapsedTime = endTime - startTime;
+        console.log(`Entire operation completed in ${elapsedTime} milliseconds.`);
+      })
+      .catch((error) => {
+        console.error('An error occurred:', error);
+      });
+  }
+  
+  calculateTime();
+  

@@ -4,5 +4,9 @@
  */
 
 function sleep (seconds) {
+    const startTime = Date.now();
+  while (Date.now() - startTime < milliseconds) {
+    // looping
+  }
 
 }
